@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import { connectToMongoDB } from "./config/DBconfig.js";
 import router from "./Routers/userRouter.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -22,6 +23,12 @@ const corsOptions = {
 
 // Apply CORS middleware globally
 app.use(cors(corsOptions));
+
+// Middleware to parse cookies
+app.use(cookieParser());
+// Parses URL-encoded data
+
+// app.use(express.urlencoded({ extended: true }));
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
