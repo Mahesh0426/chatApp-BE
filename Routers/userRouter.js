@@ -7,6 +7,7 @@ import {
   userDetails,
 } from "../controller/userDetailsController.js";
 import { LogOut } from "../controller/logOutController.js";
+import { searchUser } from "../controller/searchUser.js";
 
 const router = express.Router();
 
@@ -27,5 +28,8 @@ router.get("/logout", LogOut);
 
 //UPDATE USER DETAILS | PUT |
 router.put("/update-user", updateUserDetails);
+
+// SEARCH USER | POST |
+router.post("/search-user", searchUser);
 
 export default router;

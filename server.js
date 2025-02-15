@@ -4,13 +4,14 @@ import "dotenv/config";
 import { connectToMongoDB } from "./config/DBconfig.js";
 import router from "./Routers/userRouter.js";
 import cookieParser from "cookie-parser";
+import { app, server } from "./socket/socket.js";
 
-const app = express();
+// const app = express();
 const PORT = process.env.PORT || 8000;
 
 // CORS options
 const corsOptions = {
-  // origin: process.env.CLIENT_ROOT_URL,
+  origin: process.env.CLIENT_ROOT_URL,
   methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
   allowedHeaders: [
     "Origin",
@@ -45,7 +46,7 @@ connectToMongoDB();
 app.use("/api/user", router);
 
 // start server
-app.listen(PORT, (error) => {
+server.listen(PORT, (error) => {
   error
     ? console.log(error)
     : console.log(`server is running at  'http://localhost:${PORT}'`);

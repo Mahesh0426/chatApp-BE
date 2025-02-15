@@ -10,11 +10,11 @@ export const checkEmail = async (req, res) => {
     const { email } = req.body;
 
     // Check if email exists in the database
-    const checkEmail = await User.findOne({ email }).select("-password");
+    const checkEmail = await User.findOne(email).select("-password");
 
     // If email exists, send success response else error response
     return checkEmail
-      ? buildSuccessResponse(res, checkEmail, " email verify successfull")
+      ? buildSuccessResponse(res, checkEmail, " email verify successfully")
       : buildErrorResponse(res, "Email not exist.");
   } catch (error) {
     return buildErrorResponse(res, error.message);
