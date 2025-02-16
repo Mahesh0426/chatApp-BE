@@ -1,6 +1,8 @@
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
+import { getUserDetailsFromToken } from "../helper/getUserDetailsFromToken.js";
+import { log } from "console";
 
 // Socket.io connection
 
@@ -16,17 +18,33 @@ const io = new Server(server, {
   },
 });
 
+//online user
+const onlineUser = new Set();
+
 // Socket.io connection
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
   console.log(`User connected: ${socket.id}`);
 
-  //   socket.on("sendMessage", (message) => {
-  //     console.log("Message received:", message);
-  //     io.emit("receiveMessage", message);
-  //   });
+  const token = socket.handshake.auth.token;
+
+  //current user details
+  const user = await getUserDetailsFromToken(token);
+  //   console.log(user);
+
+  //create a room
+  socket.join(user?._id.toString());
+  onlineUser.add(user?._id?.toString());
+
+  io.emit("onlineUser", Array.from(onlineUser));
+
+  socket.on("message-page", (userId) => {
+    console.log("Event received: message-page");
+    console.log("userId", userId);
+  });
 
   // Socket.io disconnection
   socket.on("disconnect", () => {
+    onlineUser.delete(user?._id?.toString());
     console.log(`User disconnected: ${socket.id}`);
   });
 });
