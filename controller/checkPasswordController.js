@@ -10,12 +10,9 @@ import jwt from "jsonwebtoken";
 export const checkPassword = async (req, res) => {
   try {
     const { password, userId } = req.body;
-    console.log("userId", userId);
-    console.log("password", password);
 
     // Check if password exists in the database
     const user = await User.findById(userId);
-    console.log("user", user);
 
     // Compare hashed password
     const isPasswordMatch = await bcrypt.compare(password, user.password);

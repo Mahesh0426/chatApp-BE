@@ -24,7 +24,7 @@ export const registerUser = async (req, res) => {
 
     // Save user to database
     const user = new User(payload);
-    // console.log("user", user);
+    // ("user", user);
 
     const userSave = await user.save();
 
