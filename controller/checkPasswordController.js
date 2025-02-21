@@ -19,7 +19,7 @@ export const checkPassword = async (req, res) => {
     if (!isPasswordMatch) {
       return buildErrorResponse(res, "Password does not match.");
     }
-    console.log("isPasswordMatch", isPasswordMatch);
+    // console.log("isPasswordMatch", isPasswordMatch);
 
     //   token data to be stored in JWT
     const tokenData = { id: user._id, email: user.email };
