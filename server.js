@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import { connectToMongoDB } from "./config/DBconfig.js";
 import router from "./Routers/userRouter.js";
 import cookieParser from "cookie-parser";
 import { app, server } from "./socket/socket.js";
+import { connectToMongoDB } from "./config/DBconfig.js";
 
 // const app = express();
 const PORT = process.env.PORT || 8000;
