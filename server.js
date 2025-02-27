@@ -4,7 +4,7 @@ import "dotenv/config";
 import router from "./Routers/userRouter.js";
 import cookieParser from "cookie-parser";
 import { app, server } from "./socket/socket.js";
-import { connectToMongoDB } from "./config/DBconfig.js";
+import { connectToMongoDB } from "../server/config/DbConfig.js";
 
 // const app = express();
 const PORT = process.env.PORT || 8000;
