@@ -6,7 +6,7 @@ export const connectToMongoDB = () => {
       process.env.DB_CONNECT_URL + "chatApp-database"
     );
     if (connect) {
-      console.log(`Database connected at  chattApp-database successully!!!`);
+      console.log(`Database is connected at chattApp-database successully!!!`);
     }
   } catch (error) {
     console.log("Error:", error);
