@@ -4,14 +4,18 @@ import "dotenv/config";
 import router from "./Routers/userRouter.js";
 import cookieParser from "cookie-parser";
 import { app, server } from "./socket/socket.js";
-import { connectToMongoDB } from "./config/DbConfig.js";
+import { connectToMongoDB } from "./config/dbConfig.js";
 
 // const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8001;
 
 // CORS options
 const corsOptions = {
-  origin: process.env.CLIENT_ROOT_URL,
+  origin: [
+    process.env.CLIENT_ROOT_URL,
+    "http://localhost:5175",
+    "http://localhost:5174",
+  ],
   methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
   allowedHeaders: [
     "Origin",

@@ -13,7 +13,11 @@ const server = http.createServer(app);
 // Socket.io setup
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_ROOT_URL,
+    origin: [
+      process.env.CLIENT_ROOT_URL,
+      "http://localhost:5175",
+      "http://localhost:5174",
+    ],
     methods: ["GET", "POST"],
     credentials: true,
   },
