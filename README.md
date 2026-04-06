@@ -52,6 +52,11 @@ https://github.com/Mahesh0426/chat-APP-FE
 ## Getting Started
 
 1. Clone the repository
+
+```sh
+git clone https://github.com/Mahesh0426/chat-APP-BE.git
+```
+
 2. Install dependencies:
 
 ```sh
